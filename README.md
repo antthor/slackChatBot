@@ -1,30 +1,35 @@
-# LangChain/Chroma DB Slack Chatbot
-This will be a simple Slack chatbot demo built using LangChain or Chroma DB and Slack Bolt.
+# LlamaIndex Slack Chatbot
+A Simple Slack Bot developed using Python and slack_bolt that interacts with users in a Slack channel, providing responses powered by an external API that utilizes LlamaIndex and AI to process natural language from documents.
 
 ## Overview
-The bot allows you to chat with an AI assistant powered by LangChain directly within a Slack workspace. It shows how LangChain can be integrated into an existing chat platform using a custom bot server.
+The bot allows you to chat with an AI assistant powered by any AI provider with documentation injected with LlamaIndex directly within a Slack workspace. It shows how retrival augmented generation can be integrated into an existing chat platform.
 
-## Key features:
-
-Responds to messages in a Slack channel using LangChain for AI processing
-Only responds to messages in the approved workspace for security
-Scalable bot server in Node.js using Slack Bolt framework
-Easy deployment to any cloud provider
+### Features
+- Responds to events in a defined Slack channel.
+- Engages with users through direct messages and @mentions.
+- Maintains communication in a thread and avoids responding to its own messages.
 
 ## Usage
 Clone this repo
-Configure your LangChain API key
-Setup a Slack App and bot user
-Run npm install to install dependencies
-Run npm start to start the bot server
-Add the bot user to a channel and start chatting!
-See the code comments for more details.
-
-## Customization
-Train LangChain on custom data for your specific use case
-Add authentication, storage, or other integrations
-Deploy to your hosting infrastructure of choice
-Monitor and analyze conversations to continue improving
+Ensure SLACK_BOT_TOKEN and SLACK_SIGNING_SECRET are in .env file
+```bash
+pip install -r requirements.txt
+python server.py
+```
 
 ## Contributing
 Pull requests are welcome to extend the bot's functionality.
+
+## TODO
+
+### Interactions
+- In case of a 404 error from the API, the bot will notify the user with an error message. 
+- In instances of API failure, the bot will wait 1 second and attempt the request again.
+
+### Deployment and Monitoring
+- Deployment strategy and hosting platform are under consideration (suggestions welcomed).
+- Monitor git pushes and restarts the bot as necessary, primarily during off-hours unless urgent.
+
+### Security
+- Implement Prompt Injection prevention to safeguard from potential hijacking.
+- Implement a rate limiter to prevent abuse.
