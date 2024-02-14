@@ -8,6 +8,11 @@ from flask import Flask, request
 
 import logging as logger
 
+from chatbot import chatbot_message_response
+from openai import OpenAI
+
+
+
 # Load the .env file to get the token
 env_path = Path('.') / '.env'
 load_dotenv(dotenv_path=env_path)
@@ -21,12 +26,21 @@ app = App(
     token=os.environ.get("SLACK_TOKEN"),
     signing_secret=os.environ.get("SLACK_SIGNING_SECRET")
 )
-
+client = OpenAI(
+    api_key=os.environ.get("OPENAI_API_KEY")
+)
 # Listen for all messages in channels the bot is a member of
 @app.message()
 def handle_message(message, say):
-    logger.debug(message)
-    say("What's up?")
+    logger.debug("message: " + message['text'])
+
+    # Call the chatbot_message_response function to get a response from the chatbot
+    response = chatbot_message_response(message, client)
+
+    logger.debug("response: " + response)
+
+    # Send the response back to the channel
+    say(response)
 
 # Respond to messages that mention the bot
 
