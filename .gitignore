@@ -7,6 +7,8 @@
 /threads/*
 bot_responses.txt
 /__pycache__/*
+# Ignore ngrok.exe
+ngrok.exe   
 
 # Packages #
 ############
@@ -39,6 +41,8 @@ Thumbs.db
 
 # Environment files #
 #####################
+# Ignore .env files as they often contain sensitive information
+# such as API keys and passwords
 .env
 .env.*
 .envrc
