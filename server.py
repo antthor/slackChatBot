@@ -6,14 +6,14 @@ from slack_bolt import App
 from slack_bolt.adapter.flask import SlackRequestHandler
 from flask import Flask, request
 
-import logging
+import logging as logger
 
 # Load the .env file to get the token
 env_path = Path('.') / '.env'
 load_dotenv(dotenv_path=env_path)
 
 # Set up logging
-logging.basicConfig(level=logging.DEBUG)
+logger.basicConfig(level=logger.DEBUG)
 
 # Initialize the Slack Bolt app
 # Assume that SLACK_BOT_TOKEN and SLACK_SIGNING_SECRET are in .env
@@ -23,7 +23,10 @@ app = App(
 )
 
 # Listen for all messages in channels the bot is a member of
-
+@app.message()
+def handle_message(message, say):
+    logger.debug(message)
+    say("What's up?")
 
 # Respond to messages that mention the bot
 
