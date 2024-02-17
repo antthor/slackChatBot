@@ -1,2 +1,4 @@
-openai>=1.0.0
-llama_index>=1.0.0
+openai
+llama_index
+slack_bolt
+flask
