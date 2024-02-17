@@ -9,9 +9,13 @@ The bot allows you to chat with an AI assistant powered by any AI provider with 
 - Engages with users through direct messages and @mentions.
 - Maintains communication in a thread and avoids responding to its own messages.
 
+## Example
+![Alt text](https://github.com/pulsebox/slackChatBot/blob/main/images/ConvoScreenshot%202024-02-17.png)
+In the above example I have added my CV into the documents folder, then asked questions about it.
+
 ## Usage
 Clone this repo
-Ensure SLACK_BOT_TOKEN and SLACK_SIGNING_SECRET are in .env file
+Ensure OPENAI_API_KEY, SLACK_BOT_TOKEN and SLACK_SIGNING_SECRET are in .env file
 ```bash
 pip install -r requirements.txt
 python server.py
@@ -20,7 +24,7 @@ python server.py
 ## Contributing
 Pull requests are welcome to extend the bot's functionality.
 
-## TODO
+## Possible TODOs
 
 ### Interactions
 - In case of a 404 error from the API, the bot will notify the user with an error message. 
