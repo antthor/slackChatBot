@@ -10,6 +10,7 @@ from llama_index import (
     StorageContext,
     load_index_from_storage,
 )
+from llama_index.prompts import PromptTemplate
 
 # check if index exists and create it if it doesn't
 def create_index():
@@ -37,3 +38,25 @@ def query_index(retriever, query):
     context_str = "\n\n".join([n.node.get_content() for n in nodes])
     # retun a string of retrieved document text
     return context_str
+
+# format the retrieved documents
+def format_retrieved_documents(retrieved_documents):
+    formatted_documents = ""
+    for i, doc in enumerate(retrieved_documents):
+        formatted_documents += f"Document {i + 1}:\n{doc}\n\n"
+    return formatted_documents
+
+qa_prompt = PromptTemplate(
+    "Context information is below.\n"
+    "---------------------\n"
+    "{context_str}\n"
+    "---------------------\n"
+    "Given the context information and not prior knowledge, "
+    "answer the query.\n"
+    "Query: {query_str}\n"
+    "Answer: "
+)
+
+# create the prompt template for the chatbot
+def create_prompt(context_str, query_str):
+    return qa_prompt.format(context_str=context_str, query_str=query_str)

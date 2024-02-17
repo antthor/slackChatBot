@@ -4,7 +4,7 @@ set ngrokPath=%~dp0ngrok.exe
 set downloadUrl=https://bin.equinox.io/c/bNyj1mQVY4c/ngrok-v3-stable-windows-amd64.zip
 set tempZip=%TEMP%\ngrok.zip
 
-if exist "%ngrok.exe%" (
+if exist "%ngrokPath%" (
     echo ngrok.exe found
     "%ngrokPath%" http 3000
 ) else (
